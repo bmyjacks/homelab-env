@@ -1,0 +1,26 @@
+[Unit]
+Description=V2raya container
+
+
+[Container]
+ContainerName=v2raya
+Image=ghcr.io/v2raya/v2raya:v2.2.6.6
+
+Volume=/home/bmyjacks/podman_data/v2raya:/etc/v2raya
+
+PublishPort=2017:2017/tcp
+PublishPort=20171:20171/tcp
+
+Environment=V2RAYA_V2RAY_BIN=/usr/local/bin/v2ray
+Environment=V2RAYA_LOG_FILE=/tmp/v2raya.log
+
+
+[Service]
+Restart=on-failure
+
+TimeoutStartSec=300
+
+
+# The [Install] section allows enabling the generated service.
+[Install]
+WantedBy=default.target
