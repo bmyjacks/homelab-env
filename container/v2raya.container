@@ -5,6 +5,7 @@ Description=V2raya container
 [Container]
 ContainerName=v2raya
 Image=ghcr.io/v2raya/v2raya:v2.2.6.6
+Pull=never
 
 Volume=/home/bmyjacks/podman_data/v2raya:/etc/v2raya
 
@@ -16,11 +17,9 @@ Environment=V2RAYA_LOG_FILE=/tmp/v2raya.log
 
 
 [Service]
-Restart=on-failure
+Restart=always
+TimeoutStartSec=900
 
-TimeoutStartSec=300
 
-
-# The [Install] section allows enabling the generated service.
 [Install]
 WantedBy=default.target
