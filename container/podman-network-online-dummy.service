@@ -1,0 +1,10 @@
+[Unit]
+Description=This service simply activates network-online.target
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+ExecStart=/usr/bin/echo Activating network-online.target
+
+[Install]
+WantedBy=default.target
