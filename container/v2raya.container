@@ -6,18 +6,16 @@ Description=V2raya container
 ContainerName=v2raya
 Image=ghcr.io/v2raya/v2raya:v2.2.6.6
 Pull=never
-
-Volume=/home/bmyjacks/podman_data/v2raya:/etc/v2raya
-
 PublishPort=2017:2017/tcp
+PublishPort=20170:20170/tcp
 PublishPort=20171:20171/tcp
-
+Volume=/home/bmyjacks/podman_data/v2raya:/etc/v2raya
 Environment=V2RAYA_V2RAY_BIN=/usr/local/bin/v2ray
 Environment=V2RAYA_LOG_FILE=/tmp/v2raya.log
 
 
 [Service]
-Restart=always
+Restart=on-failure
 TimeoutStartSec=900
 
 
