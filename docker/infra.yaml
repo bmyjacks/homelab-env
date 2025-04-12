@@ -1,0 +1,47 @@
+services:
+  # Proxy
+  v2raya:
+    image: ghcr.io/v2raya/v2raya:v2.2.6.7
+    container_name: v2raya
+    restart: always
+    environment:
+      - V2RAYA_V2RAY_BIN=/usr/local/bin/v2ray
+      - V2RAYA_LOG_FILE=/tmp/v2raya.log
+    ports:
+      - 2017:2017
+      - 20170-20171:20170-20171
+    volumes:
+      - ./data/v2raya:/etc/v2raya
+
+  # DNS
+  smartdns:
+    image: pymumu/smartdns:latest
+    container_name: smartdns
+    restart: always
+    ports:
+      - 53:53/udp
+      - 53:53/tcp
+    volumes:
+      - ./data/smartdns:/etc/smartdns
+
+  # Time Series Database
+  influxdb:
+    image: influxdb:2-alpine
+    container_name: influxdb
+    restart: always
+    ports:
+      - 8086:8086
+    volumes:
+      - ./data/influxdb/data:/var/lib/influxdb2
+      - ./data/influxdb/config:/etc/influxdb2
+  
+  # Visualization
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    restart: always
+    user: "0"
+    ports:
+      - 3000:3000
+    volumes:
+      - ./data/grafana:/var/lib/grafana

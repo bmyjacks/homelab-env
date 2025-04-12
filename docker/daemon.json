@@ -1,0 +1,7 @@
+{
+    "proxies": {
+        "http-proxy": "http://127.0.01:20171",
+        "https-proxy": "http://127.0.01:20171",
+        "no-proxy": "ghcr.io,127.0.0.0/8"
+    }
+}
