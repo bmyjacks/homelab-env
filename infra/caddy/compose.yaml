@@ -1,0 +1,12 @@
+services:
+  caddy:
+    image: caddy:custom
+    hostname: caddy
+    container_name: caddy
+    restart: always
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
